@@ -33,7 +33,7 @@ $_DRAW.file_upload = async function (data) {
             {field: 'label', caption: 'Наименование', size: 100},
         ],
         
-        records: data.voc_contexts
+        records: dia2w2uiRecords (data.voc_contexts)
         
     }).refresh ()
     

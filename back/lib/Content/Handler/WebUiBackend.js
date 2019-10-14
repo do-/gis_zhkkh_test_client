@@ -1,5 +1,4 @@
 const Dia = require ('../../Ext/Dia/Dia.js')
-const Session = require ('./HTTP/Session.js')
 const DiaW2uiFilter = require ('../../Ext/Dia/Content/Handler/HTTP/Ext/w2ui/Filter.js')
 
 module.exports = class extends Dia.HTTP.Handler {

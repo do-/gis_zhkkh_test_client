@@ -2,13 +2,6 @@ const conf = new (require ('./Config.js'));
 
 (async function () {
     
-    try {
-        await conf.init ()
-    }
-    catch (x) {
-        return darn (['Initialization failed', x])
-    }
-
     require ('http').createServer (
         
         (request, response) => {new (require ('./Content/Handler/WebUiBackend.js')) ({

@@ -4,11 +4,9 @@
     
     $(window).keydown (check_hotkeys)
 
-    if (!$_USER) return show_block ('login')
-
     let [type, id] = location.pathname.split ('/').filter ((i) => i)
 
-    if (!type) return redirect (window.name = '/users')
+    if (!type) return redirect (window.name = '/file_upload')
 
     $_REQUEST = {type, id}
 

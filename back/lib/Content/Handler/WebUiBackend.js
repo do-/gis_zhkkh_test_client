@@ -11,19 +11,11 @@ module.exports = class extends Dia.HTTP.Handler {
     }
 
     get_session () {
-
-    	let h = this
-    	let p = h.pools
-
-    	return new Session (h, {
-    		sessions:    p.sessions,
-    		cookie_name: h.conf.auth.sessions.cookie_name || 'sid',
-    	})
-
+    	return null
     }
 
     is_anonymous () {
-        return this.rq.type == 'sessions' && this.rq.action == 'create'
+        return true
     }
 
     get_method_name () {

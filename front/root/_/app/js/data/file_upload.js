@@ -13,6 +13,15 @@ $_DO.update_file_upload = async function (e) {
 	let d = await response ({type: 'file_uploads', action: 'create'}, data)
 
 	f.unlock ()
+	
+	$('pre').text (`
+<ns0:Name>1.docx</ns0:Name>
+<ns0:Description>1.docx</ns0:Description>
+<ns0:Attachment>
+  <ns0:AttachmentGUID>${d.id}</ns0:AttachmentGUID>
+</ns0:Attachment>
+<ns0:AttachmentHASH>${d.sh}</ns0:AttachmentHASH>	
+	`)
 
 }
 

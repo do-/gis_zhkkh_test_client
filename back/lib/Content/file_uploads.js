@@ -3,7 +3,7 @@ module.exports = {
 ////////////////////////////////////////////////////////////////////////////////
 
 	get_vocs_of_file_uploads: async function () {
-	
+
 		let data = {
 		
 			voc_contexts: [
@@ -22,9 +22,13 @@ module.exports = {
 				{id: "VOTING",                label: "Голосования"},
 			],
 			
+			voc_stands: this.conf.stands.map (i => ({id: i.id, label: i.label})),
+			
 			item: {context: 'CONTENTMANAGEMENT'}
 			
 		}
+		
+		data.item.id_stand = data.voc_stands [0].id
 
 		return data
 	

@@ -12,7 +12,13 @@ $_DRAW.file_upload = async function (data) {
         
 		name   : 'file_upload_form',
             
-		record : data,  	
+		record : it,  	
+		
+		field_options: {
+			id_stand: {voc: data.voc_stands},
+		},		
+		
+		focus: -1,
 
 	})
 	

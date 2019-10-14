@@ -2,11 +2,17 @@
 
 $_DO.update_file_upload = async function (e) {
 
-	let data = w2_panel_form ().values ()
+	let f = w2_panel_form ()
+
+	let data = f.values ().actual ().validated ()
 	
 	if (!(data.context = w2_first_grid ().getSelection () [0])) die ('foo', 'Укажите, пожалуйста, раздел')
 	
+	f.lock ()
+	
 	let d = await response ({type: 'file_uploads', action: 'create'}, data)
+
+	f.unlock ()
 
 }
 

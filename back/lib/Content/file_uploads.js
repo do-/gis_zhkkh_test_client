@@ -5,7 +5,7 @@ module.exports = {
 	do_create_file_uploads: async function () {
 	
 		let stand = this.conf.stands.filter (i => i.id == this.rq.id_stand) [0]
-		
+darn (this.rq)		
 		let url = stand.href + 'ext-bus-file-store-service/rest/' + this.rq.context + '/'
 	
 	},

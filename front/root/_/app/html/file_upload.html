@@ -7,6 +7,10 @@
 			height: 340px;
 		}
 
+		input {
+			width: 300px !important;
+		}
+
 	</style>
 
     <div>
@@ -14,9 +18,16 @@
         <div class="w2ui-page page-0">
 
 			<div class="w2ui-field">
-				<label style="width:auto">Среда</label>
+				<label>Среда</label>
 				<div class=name>
 					<input name=id_stand>
+				</div>
+			</div>
+
+			<div class="w2ui-field">
+				<label>OrgPPAGUID</label>
+				<div class=name>
+					<input name=orgppaguid required minlength=36 maxlength=36 pattern="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}">
 				</div>
 			</div>
 

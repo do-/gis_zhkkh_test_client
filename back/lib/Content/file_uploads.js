@@ -26,14 +26,16 @@ module.exports = {
 		
 			let hrq = http.request (url, {method: 'PUT', headers}, rp => {
 			
-				darn (rp.headers)		
-
-				if (rp.statusCode == 200) return ok ({
-					id: rp.headers ['x-upload-uploadid'],
-					sh: 'DA5E79F3EA02E73C02B207C23D5AAE0A6CDE370D169FAB98C9369DC527F95B8C',
-				})
+				switch (rp.statusCode) {
 				
-				fail (`#foo#:${rp.statusCode} ${rp.statusMessage}: ${rp.headers ['x-upload-error']}`)
+					case 200: return ok ({
+						id: rp.headers ['x-upload-uploadid'],
+						sh: 'DA5E79F3EA02E73C02B207C23D5AAE0A6CDE370D169FAB98C9369DC527F95B8C',
+					})
+					
+					default: return fail (`#foo#:${rp.statusCode} ${rp.statusMessage}: ${rp.headers ['x-upload-error']}`)
+					
+				}
 
 			})
 

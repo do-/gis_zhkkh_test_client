@@ -1,3 +1,6 @@
+const http = require ('http')
+const fs = require ('fs')
+
 module.exports = {
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -5,9 +8,39 @@ module.exports = {
 	do_create_file_uploads: async function () {
 	
 		let stand = this.conf.stands.filter (i => i.id == this.rq.id_stand) [0]
-darn (this.rq)		
+
 		let url = stand.href + 'ext-bus-file-store-service/rest/' + this.rq.context + '/'
-	
+		
+		let path = '../files/1.docx'	
+		let stat = fs.statSync (path)
+		let body = fs.readFileSync (path)		
+		
+		let headers = {
+			'Content-Length': stat.size,
+			'Content-MD5': 'GAP8kkxCRTcZesVjV3vozg==',
+			'X-Upload-OrgPPAGUID': this.rq.orgppaguid,
+			'X-Upload-Filename': '1.docx',
+		}
+		
+		return new Promise (function (ok, fail) {
+		
+			let hrq = http.request (url, {method: 'PUT', headers}, rp => {
+			
+				darn (rp.headers)		
+
+				if (rp.statusCode == 200) return ok ({
+					id: rp.headers ['x-upload-uploadid'],
+					sh: 'DA5E79F3EA02E73C02B207C23D5AAE0A6CDE370D169FAB98C9369DC527F95B8C',
+				})
+				
+				fail (`#foo#:${rp.statusCode} ${rp.statusMessage}: ${rp.headers ['x-upload-error']}`)
+
+			})
+
+			hrq.end (body)		
+		
+		})
+		
 	},
 
 ////////////////////////////////////////////////////////////////////////////////

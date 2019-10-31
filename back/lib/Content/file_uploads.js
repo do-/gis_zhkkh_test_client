@@ -9,7 +9,7 @@ module.exports = {
 	
 		let stand = this.conf.stands.filter (i => i.id == this.rq.id_stand) [0]
 
-		let url = stand.href + 'ext-bus-file-store-service/rest/' + this.rq.context + '/'
+		let url = stand.href + 'ext-bus-file-store-service/rest/' + this.rq.context
 		
 		let path = '../files/1.docx'	
 		let stat = fs.statSync (path)
@@ -22,12 +22,16 @@ module.exports = {
 			'X-Upload-Filename': '1.docx',
 		}
 		
+		let o = {method: 'PUT', headers}
+		
+		if (stand.auth) o.auth = stand.auth
+		
 		return new Promise (function (ok, fail) {
 		
-			let hrq = http.request (url, {method: 'PUT', headers}, rp => {
-			
+			let hrq = http.request (url, o, rp => {
+
 				switch (rp.statusCode) {
-				
+
 					case 200: return ok ({
 						id: rp.headers ['x-upload-uploadid'],
 						sh: 'DA5E79F3EA02E73C02B207C23D5AAE0A6CDE370D169FAB98C9369DC527F95B8C',

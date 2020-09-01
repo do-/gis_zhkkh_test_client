@@ -1,4 +1,5 @@
 const http = require ('http')
+const https = require ('https')
 const fs = require ('fs')
 
 module.exports = {
@@ -28,7 +29,7 @@ module.exports = {
 		
 		return new Promise (function (ok, fail) {
 		
-			let hrq = http.request (url, o, rp => {
+			let hrq = (/^https/.test (url) ? https : http).request (url, o, rp => {
 
 				switch (rp.statusCode) {
 
@@ -37,7 +38,7 @@ module.exports = {
 						sh: 'DA5E79F3EA02E73C02B207C23D5AAE0A6CDE370D169FAB98C9369DC527F95B8C',
 					})
 					
-					default: return fail (`#foo#:${rp.statusCode} ${rp.statusMessage}: ${rp.headers ['x-upload-error']}`)
+					default: darn (rp); return fail (`#foo#:${rp.statusCode} ${rp.statusMessage}: ${rp.headers ['x-upload-error']}`)
 					
 				}
 
